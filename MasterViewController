@@ -1,0 +1,63 @@
+//
+//  MasterViewController.swift
+//  SpontaneousMe
+//
+//  Created by Aishu on 11/12/16.
+//  Copyright © 2016 Aishu. All rights reserved.
+//
+
+
+
+import UIKit
+
+class ViewController: UITableViewController {
+    
+    
+    var adventures = [Adventure]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.adventures = [Adventure(name: "Food"), Adventure(name: "Movies"), Adventure(name: "Travel"), Adventure(name: "Museums"), Adventure(name: "Shopping"), Adventure(name: "Volunteer"), Adventure(name: "Entertainment"), Adventure(name: "Outdoor Activities")]
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.adventures.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+        
+        var adventure : Adventure
+        
+        adventure = adventures[indexPath.row]
+        
+        cell.textLabel?.text = adventure.name
+        
+        cell.textLabel?.textAlignment = .center
+        
+        return cell
+    }
+    
+    let outdoorSegueIdentifier = "ShowOutdoorSegue"
+
+//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if  segue.identifier == outdoorSegueIdentifier,
+//            let destination = segue.destination as? OutdoorViewController,
+//            let outdoorIndex = tableView.indexPathForSelectedRow?.row
+//        {
+//            destination.outdoorName = swiftOutdoorActs[outdoorIndex]
+//        }
+//    }
+    
+}
